@@ -10,35 +10,24 @@ class Scene extends React.Component {
             isLight: true
         }
     }
-
-
     toggleScene() {
         this.setState({
             isLight: !this.state.isLight
         });
     }
-
-    // consoleHello(str) {
-    //     console.log('My child clicked:', str); // кладемо посилання на функцію в дитячий Toggler компонент, без виклику функції
-    // }
-
-
     render() {
 
         const { isLight } = this.state;
 
         return (
             <div className={isLight ? "scene-on" : "scene-off"}>
-                <Toggler changeParentState={() => {this.toggleScene()}}/>
+                <Toggler changeParentState={() => { this.toggleScene() }} buttonText={isLight ? 'Off' : 'On'} />
             </div>
         )
     }
 }
-
-
-
 export default Scene;
-
+i
 
 /* Parent може впливати на child через props 
 
