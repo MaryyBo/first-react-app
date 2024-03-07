@@ -29,7 +29,7 @@ class Aloha extends React.Component {
 
         const greetingText = this.state.isGreeting ? 'Hello' : 'Bye'; // cтворюємо змінну з обчисленням того, що має змінитись і додаємо в h1
 
-        return <h1 onClick={() => { this.switcherBye() }}>{greetingText} {this.props.name}</h1>
+        return <h1 onClick={() => { this.switcherBye() }}>{greetingText} {this.props.firstName} {this.props.lastName}</h1>
 
     }
 }
