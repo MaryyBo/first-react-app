@@ -1,6 +1,7 @@
 import React from "react";
 import Toggler from "./toggler";
 import "./style.css";
+import Indicator from "./Indicator";
 
 class Scene extends React.Component {
 
@@ -22,12 +23,13 @@ class Scene extends React.Component {
         return (
             <div className={isLight ? "scene-on" : "scene-off"}>
                 <Toggler changeParentState={() => { this.toggleScene() }} buttonText={isLight ? 'Off' : 'On'} />
+                <Indicator text={isLight ? 'Light is on' : 'Light is off'}/>
             </div>
         )
     }
 }
 export default Scene;
-i
+
 
 /* Parent може впливати на child через props 
 

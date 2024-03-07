@@ -1,17 +1,13 @@
 import React from "react";
 
-class Toggler extends React.Component {
+// Функціональна компонента - це просто функція (будь-яка) This не буде!!!
 
-    clickHandler() {
-        this.props.changeParentState();
-    }
-    render() {
-        console.log(this.props)
-
-        return (
-            <button onClick={() => { this.clickHandler() }}>{this.props.buttonText}</button>
-        )
-    }
+function Toggler(props) {
+const clickHandler = () => {
+    props.changeParentState();
+}
+return (
+<button onClick={() => {clickHandler()}}>{props.buttonText}</button>)
 }
 
 export default Toggler;
