@@ -15,13 +15,13 @@ class ToDoList extends React.Component {
     renderLi() {
         const { todoList } = this.state;
 
-        return todoList.map((task) => <li key={task.id}>{task.text}</li> );
+        return todoList.map((task) => <li key={task.id}>{task.text}</li>);
 
     }
     render() {
         return (
             <>
-            <h1>ToDoList</h1>
+                <h1>ToDoList</h1>
                 <ul>
                     {this.renderLi()}
                 </ul>
