@@ -16,6 +16,10 @@ class Scene extends React.Component {
             isLight: !this.state.isLight
         });
     }
+
+    message(str) {
+
+    }
     render() {
 
         const { isLight } = this.state;
