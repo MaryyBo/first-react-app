@@ -12,7 +12,7 @@ class UserList extends React.Component {
     }
     componentDidMount() {  //тут буде запрос на сервер
 
-        getUsers().then(data => { 
+        getUsers().then(data => {
 
             // console.log(data);
             const { results } = data;
@@ -27,11 +27,12 @@ class UserList extends React.Component {
     render() {
         const { users } = this.state //переписали через map
 
-        const userList = users.map(user => <UserCard user={user}/>);
+        const userList = users.map(user => <UserCard user={user} />);
 
         return (
             <>
-                {userList}
+                <h1 className="header-text">Users List</h1>
+                <section className="card-container">{userList}</section>
             </>
         );
 

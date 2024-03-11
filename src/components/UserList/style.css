@@ -1,0 +1,26 @@
+.header-text {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    flex-flow: row wrap;
+}
+
+.card-wrapper {
+    width: 280px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.user-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+}
