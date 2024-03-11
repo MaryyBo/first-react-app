@@ -25,12 +25,9 @@ class UserList extends React.Component {
     }
 
     render() {
-        const { users } = this.state
+        const { users } = this.state //переписали через map
 
-        let userList = [];
-        users.forEach(user => {
-            userList.push(<UserCard user={user}/>); // pushимо по 1 вже створеній карточці в змінну userList
-        })
+        const userList = users.map(user => <UserCard user={user}/>);
 
         return (
             <>
