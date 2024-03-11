@@ -21,3 +21,8 @@ function UserCard(props) {
 }
 
 export default UserCard;
+
+
+// Задача 2
+// В компоненті UserList передбачити можливість відмалювання карток для багатьох юзерів
+// https://randomuser.me/api/?results=100
