@@ -1,66 +1,72 @@
-import React from 'react'
+import React from 'react';
 import './style.css'
 
-class SingnInForm extends React.Component {
+class SignInForm extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            inputName: '' // змінна
+            email: '',
+            password: '',
+            isEmailValid: true
         }
     }
 
     submitHandler = (event) => {
-        event.preventDefault()
-        alert(`Hello, ${this.state.inputName}!`);
-      console.log(event)
+        event.preventDefault();
+        console.log(this.state);
 
+        // Задача: Якщо на момент відправки форми, всередині рядка відсутня "@" - форма невалідна
+        if(!this.state.email.includes('@')) {
+            this.setState({
+                isEmailValid: false
+            });
+        } else {
+            this.setState({
+                isEmailValid: true
+            });
+        }
     }
 
-    changeHandler = ({target}) => { // деструктуризація
+    universalChangeHandler = ({target: {value, name}}) => {
         this.setState({
-            inputName: target.value //inputName: event.target.value
-        })
+            [name]: value
+        });
     }
+
+    // changeEmailHandler = ({target: {value}}) => {
+    //     this.setState({
+    //         email: value
+    //     });
+    // }
+
+    // changePasswordHandler = ({target: {value}}) => {
+    //     this.setState({
+    //         password: value
+    //     });
+    // }
 
     render() {
-
-        // const { email, password, isEmailValid } = this.state
+        const { email, password, isEmailValid } = this.state;
 
         return (
-            <form className='form-wrapper' onSubmit={this.submitHandler}>
+            <>
                 <h1>Sign In Form</h1>
-                <label>
-                    Type your name
-                    <input
-                        type='text'
-                        name='inputName'
-                        onChange={this.changeHandler}
-                        value={this.state.inputName}
-                    />
-                </label>
+                <form className='form-wrapper' onSubmit={this.submitHandler}>
+                    <label>
+                        Type your email
+                        <input type='text' className={isEmailValid ? '' : 'invalid'} name='email' onChange={this.universalChangeHandler} value={email} />
+                    </label>
+                    <label>
+                        Type your password
+                        <input type='password' name='password' onChange={this.universalChangeHandler} value={password} />
+                    </label>
 
-                <button>Send Name</button>
-            </form>
+                    <button type='submit'>Send form</button>
+                </form>
+            </>
         )
     }
 }
 
-export default SingnInForm;
-
-// Контрольований imput ??
-
-
-/*Задача
-
-Написати компоненту з формою, що складається з одного інпута (ім'я користувача) і кнопки відправки.
-За натисненням на кнопку відправки форми виникає напис (alert), який вітає користувача тим ім'ям, яке було введено в інпут
-
-Задача (*)
-Форма, яка вітається повинна бути всередині батьківської форми.
-В батьківській формі зберігається ім'я користувача у стейті.
-
-Тобто, форма у якій запитується ім'я користувача - дочірня форма.
-Форма, у якій відображається вітання ім'я користувача - батьківська форма.
-Дитина повинна передати батьку name юзера, щоб він зміг з ним привітатися.
-*/
+export default SignInForm;
