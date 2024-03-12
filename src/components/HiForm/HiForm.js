@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-class SingnInForm extends React.Component {
+class HiForm extends React.Component {
     constructor(props) {
         super(props)
 
@@ -10,33 +10,34 @@ class SingnInForm extends React.Component {
         }
     }
 
-    submitHandler = (event) => {
+    submitHandler = (event) => { // при відправці форми
         event.preventDefault()
+        // console.log(`Hello, ${this.state.inputName}!`)
         alert(`Hello, ${this.state.inputName}!`);
       console.log(event)
 
     }
 
-    changeHandler = ({target}) => { // деструктуризація
+    changeHandler = ({target: {value}}) => { // деструктуризація inputName: event.target.value
         this.setState({
-            inputName: target.value //inputName: event.target.value
-        })
+            inputName: value //  ми прописуємо те Value яке нам буде приходитит з input
+        }) 
     }
 
     render() {
 
-        // const { email, password, isEmailValid } = this.state
+        const {inputName } = this.state
 
         return (
-            <form className='form-wrapper' onSubmit={this.submitHandler}>
-                <h1>Sign In Form</h1>
+            <form className='form-wrapper' onSubmit={this.submitHandler}> 
+                <h1>Hi Form</h1>
                 <label>
                     Type your name
                     <input
                         type='text'
-                        name='inputName'
+                        name='inputName' //можна не вказувати
                         onChange={this.changeHandler}
-                        value={this.state.inputName}
+                        value={inputName}
                     />
                 </label>
 
@@ -46,7 +47,7 @@ class SingnInForm extends React.Component {
     }
 }
 
-export default SingnInForm;
+export default HiForm;
 
 // Контрольований imput ??
 
