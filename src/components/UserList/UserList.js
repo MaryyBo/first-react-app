@@ -2,6 +2,7 @@ import React from "react";
 import { getUsers } from "../../api";
 import UserCard from "./UserCard"
 
+
 class UserList extends React.Component {
     constructor(props) {
         super(props);
@@ -24,6 +25,10 @@ class UserList extends React.Component {
 
     }
 
+    handleSearch = () => {
+
+    }
+
     render() {
         const { users } = this.state //переписали через map
 
@@ -32,6 +37,7 @@ class UserList extends React.Component {
         return (
             <>
                 <h1 className="header-text">Users List</h1>
+                <input type="text" placeholder="Search by lastname" onChange={this.handleSearch}></input>
                 <section className="card-container">{userList}</section>
             </>
         );
