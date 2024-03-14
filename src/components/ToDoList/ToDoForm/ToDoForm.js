@@ -27,18 +27,19 @@ class ToDoForm extends React.Component {
         }
     };
 
-    changeHandler = ({ target: { value, name } }) => { // деструктуризація inputName: event.target.value
-        if (value.includes('*') === true) {
+    changeHandler = ({ target: {value, name} }) => {
+        this.setState({
+            [name]: value
+        });
+        if(value.includes('*')) {
             this.setState({
                 isInputValid: false
-            })
+            });
         } else {
-
             this.setState({
-                [name]: value,//  ми прописуємо те Value яке нам буде приходитит з input
-                isInputValid: false
-            })
-
+                [name]: value,
+                isInputValid: true
+            });
         }
     }
 
@@ -107,9 +108,9 @@ export default ToDoForm;
 
 
 //короткий запис
-function cx(objectClassNames) { // має повернути з об'єкту повернути строчку з классами які true
-    return Object.entries(objectClassNames)
-        .filter(([className, condition]) => condition)
-        .map(([className, condition]) => className)
-        .join(' ');
-}
+// function cx(objectClassNames) { // має повернути з об'єкту повернути строчку з классами які true
+//     return Object.entries(objectClassNames)
+//         .filter(([className, condition]) => condition)
+//         .map(([className, condition]) => className)
+//         .join(' ');
+// }
