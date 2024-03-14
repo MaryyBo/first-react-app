@@ -12,3 +12,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+//name.module.css
+// import styles from './..'

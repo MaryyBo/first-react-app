@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './ToDoFormStyle.module.css'
 
 
 class ToDoForm extends React.Component {
@@ -31,10 +32,12 @@ class ToDoForm extends React.Component {
 
     render() {
 
+        console.log(styles); //отримаємо  унікальний сталь "ToDoFormStyle_container__NXfV-"
+
         const { todoItem } = this.state
 
         return (
-            <form className='form-wrap' onSubmit={this.submitHandler}>
+            <form  onSubmit={this.submitHandler} className={styles.container}>
                 <input
                     name='todoItem'
                     type='text'
