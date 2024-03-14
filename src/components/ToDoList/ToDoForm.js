@@ -14,36 +14,37 @@ class ToDoForm extends React.Component {
         event.preventDefault();
         const { todoItem } = this.state;
 
-        console.log(this.props)
- 
+        // console.log(this.props)
+
         if (todoItem.trim() !== '') {
             this.props.addTask(todoItem);
             this.setState({ todoItem: '' });
         }
     };
 
-    changeHandler = ({target: {value}}) => { // деструктуризація inputName: event.target.value
+    changeHandler = ({ target: { value, name } }) => { // деструктуризація inputName: event.target.value
         console.log('changeHadnler')
         this.setState({
-            todoItem: value //  ми прописуємо те Value яке нам буде приходитит з input
-        }) 
+            [name]: value //  ми прописуємо те Value яке нам буде приходитит з input
+        })
     }
 
     render() {
 
-        const {todoItem } = this.state
+        const { todoItem } = this.state
 
         return (
-            <form className='form-wrap' onSubmit={this.submitHandler}> 
-                    <input
-                        type='text'
-                        onChange={this.changeHandler}
-                        value={todoItem}
-                    />
-                <button>Add Item</button>
+            <form className='form-wrap' onSubmit={this.submitHandler}>
+                <input
+                    name='todoItem'
+                    type='text'
+                    value={todoItem}
+                    onChange={this.changeHandler}
+                />
+                <button type='submit'>Add Item</button> 
             </form>
         )
-    }
+    } // button с типом submit!!!Щоб відправляти запрос
 }
 
 export default ToDoForm;
