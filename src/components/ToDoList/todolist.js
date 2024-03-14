@@ -54,10 +54,11 @@ class ToDoList extends React.Component {
         return (
             <>
                 <h1>ToDoList</h1>
-            <ul className={styles.container}>
                 <ToDoForm addTask={this.addTask} />
+                <ul className={styles.container}>
+
                     {this.renderLi()}
-                    
+
                 </ul>
             </>
         );

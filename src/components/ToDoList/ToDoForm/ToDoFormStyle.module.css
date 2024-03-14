@@ -1,4 +1,14 @@
 .container {
     background-color: blueviolet;
-    border: 4px dashed red;
+    border: 2px solid black;
+}
+
+.invalid-input {
+    border: 6px solid red;
+    background-color: yellow;
+}
+
+.input {
+    height:  40px;
+    background-color: cadetblue;
 }

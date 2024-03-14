@@ -1,5 +1,8 @@
 import React from 'react'
 import styles from './ToDoFormStyle.module.css'
+import cx from 'classnames';
+
+//"*" - заборонений символ, потрібно реалізувати валідацію
 
 
 class ToDoForm extends React.Component {
@@ -7,7 +10,8 @@ class ToDoForm extends React.Component {
         super(props)
 
         this.state = {
-            todoItem: '' // змінна
+            todoItem: '', // змінна
+            isInputValid: true
         }
     }
 
@@ -24,27 +28,44 @@ class ToDoForm extends React.Component {
     };
 
     changeHandler = ({ target: { value, name } }) => { // деструктуризація inputName: event.target.value
-        console.log('changeHadnler')
-        this.setState({
-            [name]: value //  ми прописуємо те Value яке нам буде приходитит з input
-        })
+        if (value.includes('*') === true) {
+            this.setState({
+                isInputValid: false
+            })
+        } else {
+
+            this.setState({
+                [name]: value,//  ми прописуємо те Value яке нам буде приходитит з input
+                isInputValid: false
+            })
+
+        }
     }
 
     render() {
 
-        console.log(styles); //отримаємо  унікальний сталь "ToDoFormStyle_container__NXfV-"
+        // console.log(styles); //отримаємо  унікальний сталь "ToDoFormStyle_container__NXfV-"
 
-        const { todoItem } = this.state
+        const { todoItem, isInputValid } = this.state
+
+        const className = cx({
+            [styles.input]: true,
+            [styles['invalid-input']]: !isInputValid
+
+        })
 
         return (
-            <form  onSubmit={this.submitHandler} className={styles.container}>
+            <form onSubmit={this.submitHandler} className={styles.container}>
                 <input
+                    // className={`${styles.input} ${isInputValid ? '' : styles['invalid-input']}`}
+                    // className={isInputValid === true ? '' : styles['invalid-input']}
+                    className={className}
                     name='todoItem'
                     type='text'
                     value={todoItem}
                     onChange={this.changeHandler}
                 />
-                <button type='submit'>Add Item</button> 
+                <button type='submit'>Add Item</button>
             </form>
         )
     } // button с типом submit!!!Щоб відправляти запрос
@@ -52,12 +73,43 @@ class ToDoForm extends React.Component {
 
 export default ToDoForm;
 
-/*TodoList - компонента в якій відбувається управління списком задач і рендериться сам список задач
+/* 
+Коли інпут валідний ---> .input
+Коли інпут HEвалідний ---> всеодно закидуємо .input і через пробіл підключаємо .invalid-input
 
-Зробити компоненту TodoForm, яка буде представляти собою форму
-Там буде 1 інпут - текст таски
-І кнопка, яка буде додавати таску до списку у батьківській компоненті TodoList
-
-TodoList - батьківська компонента
-TodoForm - дочірня компонента
 */
+
+// function cx(objectClassNames) { // має повернути з об'єкту повернути строчку з классами які true
+// const cort = Object.entries(objectClassNames);
+// const filteredArray = cort.filter(([className, condition]) => condition);
+// const mapArray = filteredArray.map(([className, condition]) => className);
+// return mapArray.join (' ');
+// }
+
+/*
+
+Це об'єкт = objectClassNames = {
+ className1: true
+ className2: true
+ className3: false
+
+}
+
+Картежі:
+[[className1, true],[className2, true],[className3, false]]
+
+=> [[className1],[className2]]
+
+і отримуємо масив строк з  назвами  [className1,className2]
+
+=> 'className1 className2'
+*/
+
+
+//короткий запис
+function cx(objectClassNames) { // має повернути з об'єкту повернути строчку з классами які true
+    return Object.entries(objectClassNames)
+        .filter(([className, condition]) => condition)
+        .map(([className, condition]) => className)
+        .join(' ');
+}
