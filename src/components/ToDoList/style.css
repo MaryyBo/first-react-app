@@ -1,8 +1,7 @@
-/* .form-wrap {
-    width: 200px;
+.form-wrap {
+    width: 500px;
     display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 10px;
+    /* flex-direction: column; */
+    margin: 20px;
     padding: 20px;
-} */
+}

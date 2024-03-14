@@ -55,8 +55,9 @@ class ToDoList extends React.Component {
             <>
                 <h1>ToDoList</h1>
                 <ul>
+                <ToDoForm addTask={this.addTask} />
                     {this.renderLi()}
-                    <ToDoForm addTask={this.addTask} />
+                    
                 </ul>
             </>
         );
