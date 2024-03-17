@@ -4,15 +4,12 @@ import './style.css';
 
 class UserCard extends React.Component {
 
-
-
     render() {
-        const { user: { name: { first, last }, email, picture: { large } } } = this.props;
-
+        const {user: { name: { first: firstName, last: lastName }, email, picture: { large: imgSrc } }} = this.props;
         return (
             <article className='card-wrapper'>
-                <img src={large} alt={`${first}${last}`} className='user-img' />
-                <h1>{first} {last}</h1>
+                <img src={imgSrc} alt={`${firstName} ${lastName}`} className='user-img' />
+                <h1>{firstName} {lastName}</h1>
                 <p>{email}</p>
             </article>
         )
@@ -21,7 +18,7 @@ class UserCard extends React.Component {
 
 UserCard.propTypes = {
     user: PropTypes.shape({
-
+        
         name: PropTypes.shape({
             first: PropTypes.string.isRequired,
             last: PropTypes.string.isRequired
@@ -32,10 +29,8 @@ UserCard.propTypes = {
         picture: PropTypes.shape({
             large: PropTypes.string.isRequired
         }).isRequired
-
+        
     }).isRequired
 }
 
 export default UserCard;
-
-

@@ -12,11 +12,7 @@ import FlexContainer from "./FlexContainer/FlexContainer";
 class App extends React.Component {
     render() {
         return (
-            <FlexContainer flexDirection="row" justifyContent="center" alignItems="stretch">
-              <div>Item 1</div>
-              <div>Item 2</div>
-              <div>Item 3</div>
-            </FlexContainer>
+            <UserList/>
           );
         };
 }
