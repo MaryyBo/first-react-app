@@ -39,6 +39,11 @@ class App extends React.Component {
               console.log(text);
             });
         }}>Read text from buffer</button>
+
+        <button onClick={() => {
+          window.navigator.geolocation.getCurrentPosition((positionObject) => {
+            console.log(positionObject)})
+        }}>Get my current position</button>
       </>
     );
   };
