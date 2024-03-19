@@ -12,15 +12,17 @@ class WindowResizer extends Component {
     }
 
     componentDidMount() {
+        console.log('did mount')
         window.addEventListener('resize', this.eventHandler)
     }
 
     componentWillUnmount() {
+        console.log('will mount')
         window.removeEventListener('resize', this.eventHandler)
     }
 
     eventHandler = () => {
-        this.setState({
+       this.setState({
             width: window.innerWidth,
             height: window.innerHeight
         })
