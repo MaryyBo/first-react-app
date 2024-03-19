@@ -1,14 +1,35 @@
 import React from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import WindowResizer from "./WindowResizer/windowResizer";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <button onClick={() => { window.close() }}>close page</button>
-        <button onClick={() => { window.open('https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/') }}>Відкрити методи классової компоненти</button>
+
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+        <button onClick={() => { window.location.assign('https://uk.legacy.reactjs.org/docs/react-component.html#componentdidupdate') }}>Assign</button>
+        <button onClick={() => { window.location.reload() }}>Reload</button>
+        <button onClick={() => { window.location.replace('https://developer.mozilla.org/ru/docs/Web/Events') }}>Replace</button>
+
+        <p>Lorem ipsum lorem ipsum lorem</p>
+
+        <button onClick={() => {
+          window.navigator.clipboard.writeText('Lorem ipsum lorem ipsum lorem');
+          toast.success('🦄 Copied to clipboard');
+        }}>Click to copy text</button>
       </>
     );
   };
