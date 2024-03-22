@@ -6,13 +6,14 @@ const InnerChild = () => {
     return (
 
         <UserContext.Consumer>
-            {({ firsName, lastName, email, avatar }) => {
-                
+            {({user, logOut}) => {
+
                 return (
                     <div style={{ border: '2px solid black', padding: '25px' }}>
                         I`m innerChild
 
-                        <p>{firsName} {lastName} {email} </p>
+                        <button onClick={logOut}>log Out</button>
+                        <p>{user.firsName} {user.lastName} {user.email} </p>
                     </div>
                 )
             }}
