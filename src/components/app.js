@@ -18,7 +18,7 @@ class App extends Component {
         firstName: 'John',
         lastName: 'Doe',
         email: 'johndoe@gmail.com',
-        avatar: 'https://img.freepik.com/premium-vector/portrait-of-a-fashionable-dog-generative-ai-glasses-style-avatar-fashion-pet-stylish-design-modern-avatar-character-trendy-teenager-breed-trend-artistic-concept-vector-illustration_579956-3458.jpg'
+        avatar: 'https://lapkins.ru/upload/iblock/a47/a4731614e4c149dbd65691c434dedd56.jpg'
       },
       theme: THEMES.LIGHT
     }
