@@ -1,0 +1,20 @@
+[{
+    "brand" : "Samsung",
+    "model" : "S10",
+    "price" : "100$"
+},
+{
+    "brand" : "Nokia",
+    "model" : "F456",
+    "price" : "20$"
+},
+{
+    "brand" : "Iphone",
+    "model" : "15 Plus",
+    "price" : "2600$"
+},
+{
+    "brand" : "Huawei",
+    "model" : "Super-model",
+    "price" : "400$"
+}]
