@@ -1,89 +1,35 @@
-import React from "react";
-import PhonesLoader from "./PhonesLoader/PhonesLoader";
-import TVLoader from "./TVLoader/TVLoader";
-import DataProvider from "./DataProvider/DataProvider";
 
 
-function App() {
+import React, { Component } from 'react';
+import Tree from './Tree/Tree';
+import { UserContext } from "../contexts/userContext"
 
-  return (
-    <>
-      <DataProvider 
-      
-      loadData={() => {
-        return fetch('./phones.json')
-          .then((response) => response.json())
-      }}>
+class App extends Component {
 
+  constructor(props) {
+    super(props);
 
-        {(state) => {
-          const { data, isLoading, isError } = state
+    this.state = {
+      user: {
+        firstName:'John',
+        lastName:'Doe',
+        email:'johndoe@gmail.com',
+        avatar:'https://img.freepik.com/premium-vector/portrait-of-a-fashionable-dog-generative-ai-glasses-style-avatar-fashion-pet-stylish-design-modern-avatar-character-trendy-teenager-breed-trend-artistic-concept-vector-illustration_579956-3458.jpg'
 
-          return (
-            <>
-              {isLoading && <div>Loading...</div>}
-              {isError && <div>Error is happening!!!</div>}
+      }
+    }
+    
+  }
+  
+  render() {
 
-              <ul>
-                {data.map((data, index) => <li key={index}>Brand: {data.brand} ---Model: {data.model} --- Price: {data.price}</li>)}
-              </ul>
-            </>
-          );
-        }}
-        </DataProvider>
-
-        <DataProvider 
-      
-      loadData={() => {
-        return fetch('./tv.json')
-          .then((response) => response.json())
-      }}>
-
-
-        {(state) => {
-          const { data, isLoading, isError } = state
-
-          return (
-            <>
-              {isLoading && <div>Loading...</div>}
-              {isError && <div>Error is happening!!!</div>}
-
-              <ol>
-                {data.map((data, index) => <li key={index}>Brand: {data.brand} ---Model: {data.model} --- Price: {data.price}</li>)}
-              </ol>
-            </>
-          );
-        }}
-        </DataProvider>
-
-
-    </>
-  )
+    console.log(UserContext);
+    return (
+      <UserContext.Provider value={this.state.user}>
+      <Tree/>
+      </UserContext.Provider>
+    );
+  }
 }
 
-
-
 export default App;
-
-/*
-
-loadData={() => {
-        return fetch('./phones.json')
-          .then((response) => response.json())
-      }}
-
-        renderData={(state) => {
-          const { data, isLoading, isError } = state
-
-          return (
-            <>
-              {isLoading && <div>Loading...</div>}
-              {isError && <div>Error is happening!!!</div>}
-
-              <ul>
-                {data.map((data) => <li>Brand: {data.brand} ---Model: {data.model} --- Price: {data.price}</li>)}
-              </ul>
-            </>
-          );
-        }}
-*/
