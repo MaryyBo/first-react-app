@@ -3,6 +3,10 @@
 import React, { Component } from 'react';
 import Tree from './Tree/Tree';
 import { UserContext } from "../contexts/userContext"
+import { ThemeContext } from '../contexts/ThemeContext';
+import CONSTANTS from '../Constants';
+const {THEMES} = CONSTANTS;
+
 
 class App extends Component {
 
@@ -15,31 +19,44 @@ class App extends Component {
         lastName: 'Doe',
         email: 'johndoe@gmail.com',
         avatar: 'https://img.freepik.com/premium-vector/portrait-of-a-fashionable-dog-generative-ai-glasses-style-avatar-fashion-pet-stylish-design-modern-avatar-character-trendy-teenager-breed-trend-artistic-concept-vector-illustration_579956-3458.jpg'
-
-      }
+      },
+      theme: THEMES.LIGHT
     }
   }
 
   logOut = () => {
-    this.setState ({
-      user:{} //порожній юзер
-    })}
-
-
-render() {
-
-  return (
-    <UserContext.Provider value={{
-      user: this.state.user,
-      logOut: this.logOut
-
-      }}>
-      
-      <Tree />
-    </UserContext.Provider>
-  );
-}
+    this.setState({
+      user: {} //порожній юзер
+    })
   }
+
+  setTheme = theme => { // має бути колбек для ЗМІНИ теми 
+    this.setState({
+      theme: theme //theme можна скоротити
+    })
+
+  }
+
+  render() {
+
+    return (
+      <ThemeContext.Provider value={{
+        theme: this.state.theme,
+        setTheme: this.setTheme
+      }}>
+
+        <UserContext.Provider value={{
+          user: this.state.user,
+          logOut: this.logOut
+        }}>
+          App
+          <Tree />
+
+        </UserContext.Provider>
+      </ThemeContext.Provider>
+    );
+  }
+}
 
 
 export default App;

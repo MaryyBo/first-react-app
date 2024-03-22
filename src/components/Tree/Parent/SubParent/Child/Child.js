@@ -3,7 +3,7 @@ import InnerChild from './InnerChild/InnerChild';
 
 const Child = () => {
     return (
-        <div style={{border: '2px solid black', padding: '25px'}}>
+        <div >
         <InnerChild/>
         </div>
     );
