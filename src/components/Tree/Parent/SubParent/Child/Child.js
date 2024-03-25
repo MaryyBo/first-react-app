@@ -1,24 +1,18 @@
 import React from 'react';
 import InnerChild from './InnerChild/InnerChild';
-import { UserContext } from '../../../../../contexts/userContext';
+import { withUser } from '../../../../../HOC';
 import style from "./img.module.css"
 
+
 const Child = (props) => {
-    console.log(1, props)
     return (
-        <UserContext.Consumer>
-            {({user:{avatar}}) => {
-                console.log(2, avatar)
-                
-                return (
-                    <div className={style.border}>
-                         <img className={style.img} src={avatar} alt='avatar'/>
-                        <InnerChild />
-                    </div>
-                )
-            }}
-        </UserContext.Consumer>
-    );
+        <div className={style.border}>
+             <img className={style.img} src={props.user.avatar} alt='avatar'/>
+            <InnerChild />
+        </div>
+    )
 }
 
-export default Child;
+
+
+export default withUser(Child);

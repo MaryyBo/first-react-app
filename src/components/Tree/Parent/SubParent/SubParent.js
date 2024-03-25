@@ -1,7 +1,6 @@
 import React from 'react';
 import Child from './Child/Child';
-import { withTheme } from '../../../../HOC';
-import { UserContext } from '../../../../contexts/userContext';
+import { withTheme, withUser} from '../../../../HOC';
 import CONSTANTS from '../../../../Constants';
 const { THEMES } = CONSTANTS;
 
@@ -15,18 +14,14 @@ const Subparent = (props) => { // Тут ми фокусуємось на вир
         <Child />
     </div>)
 }
+// //1.Огортаємо Subparent в контекст Theme
 
-const SubparentWithThemeAndUser = (props) => { // Компонента, яка займається загортанням в консьюмери
-    return (
-        <UserContext.Consumer>
-            {({user, logOut}) => {
-                const SubparentThemed = withTheme(Subparent)
-                return (
-                    <SubparentThemed user={user} logOut={logOut} />
-                )
-            }}
-        </UserContext.Consumer>
-    )
-}
+// const SubparentWithTheme = withTheme(Subparent);
 
-export default SubparentWithThemeAndUser;
+// //2. Огортаємо SubparentWithTheme в контекст User
+
+// const SubparentWithThemeAndUser = withUser(SubparentWithTheme);
+
+//3. Теж саме але в 1 рядок -->
+
+export default withUser(withTheme(Subparent));
