@@ -1,7 +1,7 @@
 
 
 import React, { Component } from 'react';
-import Tree from './Tree/Tree';
+import TreeWithTheme from './Tree/Tree';
 import { UserContext } from "../contexts/userContext"
 import { ThemeContext } from '../contexts/ThemeContext';
 import CONSTANTS from '../Constants';
@@ -32,7 +32,7 @@ class App extends Component {
 
   setTheme = theme => { // має бути колбек для ЗМІНИ теми 
     this.setState({
-      theme: theme //theme можна скоротити
+      theme: theme //theme - можна скоротити
     })
 
   }
@@ -50,7 +50,7 @@ class App extends Component {
           logOut: this.logOut
         }}>
           App
-          <Tree />
+          <TreeWithTheme />
 
         </UserContext.Provider>
       </ThemeContext.Provider>
@@ -60,3 +60,5 @@ class App extends Component {
 
 
 export default App;
+
+

@@ -2,30 +2,51 @@
 import React from 'react';
 import Parent from './Parent/Parent';
 import style from "./Tree.module.css";
-import { ThemeContext } from '../../contexts/ThemeContext';
 import CONSTANTS from '../../Constants';
 import cx from "classnames";
-const {THEMES} = CONSTANTS;
+import { withTheme } from '../../HOC';
+const { THEMES } = CONSTANTS;
+
 
 
 
 const Tree = (props) => {
+
+    const classNames = cx(style.container, {
+        [style.lightTheme]: props.theme === THEMES.LIGHT,
+        [style.darkTheme]: props.theme === THEMES.DARK
+    });
     return (
-        <ThemeContext.Consumer>
-            {({theme, setTheme}) => {
-                const classNames = cx(style.container, {
-                    [style.lightTheme] : theme === THEMES.LIGHT,
-                    [style.darkTheme] : theme === THEMES.DARK
-                });
-                return (
-                    <div className={classNames}>
-                        <Parent />
-                    </div>
-                )
-            }}
-        </ThemeContext.Consumer>
-    );
+        <div className={classNames}>
+            <Parent />
+        </div>
+    )
 }
 
-export default Tree;
+// const TreeWithTheme = (props) => {
+//     return (
+//         <ThemeContext.Consumer>
+//             {({ theme, setTheme }) => {
+//                 return (
+//                     <Tree
+//                         theme={theme}
+//                         setTheme={setTheme}
+//                     />
+//                 )
+//             }}
+//         </ThemeContext.Consumer>
+//     )
+// }
 
+
+const TreeWithTheme = withTheme(Tree);
+
+export default TreeWithTheme;
+
+
+
+
+/*
+Компонент вищого  порядку- функція, яка приймає компонент як аргумент 
+і повертає новий компонент
+*/
