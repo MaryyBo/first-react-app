@@ -1,7 +1,8 @@
 
 
 import React, { Component } from 'react';
-import SignUpForm from './LoginForm/LoginForm';
+import NewCounter from './NewCounter/NewCounter';
+import NewCounterFunction from './NewCounter/NewCounterFunction';
 
 
 
@@ -11,7 +12,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      
+
     }
   }
 
@@ -19,7 +20,7 @@ class App extends Component {
 
 
     return (
-      <SignUpForm />
+      <NewCounterFunction />
     )
   }
 }
