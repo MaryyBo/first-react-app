@@ -12,7 +12,10 @@ const MouseTracer = (props) => {
         y: 0
     })
 
+    const [counter, setCounter] = useState (0)
+
     useEffect(() => {
+
         window.addEventListener('mousemove', trackerHandler);
 
         return () => { // сlean function = componentWillUnmount
@@ -25,7 +28,7 @@ const MouseTracer = (props) => {
    // якщо ми хочему запустити useEffect і виконати його лише 1 раз, то ми маємо лишити пустий масив [] dependenciesList - як componentDidMount
 
     const trackerHandler = (event) => {
-        console.log(event)
+       
         const { clientX, clientY } = event
         setCoordinates({
             x: clientX,
@@ -34,10 +37,15 @@ const MouseTracer = (props) => {
 
     }
 
+    const clickHandler = () => {
+        setCounter (counter + 1)
+    }
     return (
         <>
             <p>X: {coordinates.x}</p>
             <p>Y: {coordinates.y}</p>
+            <button onClick={clickHandler}>click on me</button>
+            <p>Counter: {counter}</p>
         </>
     );
 }
