@@ -14,6 +14,11 @@ const MouseTracer = (props) => {
 
     useEffect(() => {
         window.addEventListener('mousemove', trackerHandler);
+
+        return () => { // сlean function = componentWillUnmount
+            
+            window.removeEventListener('mousemove', trackerHandler);
+        }
     }, []);
 
     // useEffect 2 параметром приймає DependencyList< якщо props не зміниться то кол бек виконуватись не буде
