@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import NewCounter from './NewCounter/NewCounter';
 import NewCounterFunction from './NewCounter/NewCounterFunction';
+import MouseTracer from './MouseTracker/MouseTracer';
 
 
 
@@ -20,7 +21,7 @@ class App extends Component {
 
 
     return (
-      <NewCounterFunction />
+      <MouseTracer />
     )
   }
 }
