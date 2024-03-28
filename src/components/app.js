@@ -1,32 +1,21 @@
 
+import React from "react";
+import NewUserList from "./UserList/NewUserList";
 
-import React, { Component } from 'react';
-import NewCounter from './NewCounter/NewCounter';
-import NewCounterFunction from './NewCounter/NewCounterFunction';
-import MouseTracer from './MouseTracker/MouseTracer';
-
-
-
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            
+        }
     }
-  }
-
-  render() {
-
-
-    return (
-      <MouseTracer />
-    )
-  }
+    
+    render() {
+        return (
+            <NewUserList />
+        )
+    }
 }
 
-
 export default App;
-
-
