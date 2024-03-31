@@ -1,21 +1,23 @@
 
-import React from 'react';
+import {useContext} from 'react';
 import Parent from './Parent/Parent';
 import style from "./Tree.module.css";
 import CONSTANTS from '../../Constants';
 import cx from "classnames";
-import { withTheme } from '../../HOC';
+import { ThemeContext } from '../../contexts/ThemeContext';
 const { THEMES } = CONSTANTS;
 
 
-const Tree = (props) => {
+const Tree = () => {
+
+   const {theme} =  useContext(ThemeContext)
 
     const classNames = cx(style.container, {
-        [style.lightTheme]: props.theme === THEMES.LIGHT,
-        [style.darkTheme]: props.theme === THEMES.DARK
+        [style.lightTheme]: theme === THEMES.LIGHT,
+        [style.darkTheme]: theme === THEMES.DARK
     });
 
-    console.log('tree', classNames)
+    // console.log('tree', classNames)
 
     return (
         <div className={classNames}>
@@ -24,14 +26,6 @@ const Tree = (props) => {
     )
 }
 
-const TreeWithTheme = withTheme(Tree);
 
-export default TreeWithTheme;
+export default Tree;
 
-
-
-
-/*
-Компонент вищого  порядку- функція, яка приймає компонент як аргумент 
-і повертає новий компонент
-*/

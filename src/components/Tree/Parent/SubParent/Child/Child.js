@@ -1,13 +1,15 @@
-import React from 'react';
+import { useContext } from 'react';
 import InnerChild from './InnerChild/InnerChild';
-import { withUser } from '../../../../../HOC';
+import { UserContext } from '../../../../../contexts/userContext';
 import style from "./img.module.css"
 
 
-const Child = (props) => {
+const Child = () => {
+
+  const {user: {avatar, firstName, lastName}} = useContext(UserContext)
     return (
         <div className={style.border}>
-             <img className={style.img} src={props.user.avatar} alt='avatar'/>
+             <img className={style.img} src={avatar} alt={`${firstName} ${lastName}`}/>
             <InnerChild />
         </div>
     )
@@ -15,4 +17,4 @@ const Child = (props) => {
 
 
 
-export default withUser(Child);
+export default Child;

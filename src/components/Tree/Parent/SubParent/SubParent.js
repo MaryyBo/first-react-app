@@ -1,27 +1,22 @@
-import React from 'react';
+import { useContext } from 'react';
 import Child from './Child/Child';
-import { withTheme, withUser} from '../../../../HOC';
+import { UserContext } from '../../../../contexts/userContext';
+import { ThemeContext } from '../../../../contexts/ThemeContext';
 import CONSTANTS from '../../../../Constants';
 const { THEMES } = CONSTANTS;
 
-const Subparent = (props) => { // Тут ми фокусуємось на вирішенні нашої задачі, без хлам-коду типу консьюмерів
-    const nextTheme = props.theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
+const Subparent = () => { // Тут ми фокусуємось на вирішенні нашої задачі, без хлам-коду типу консьюмерів
+    const { user: { firstName } } = useContext(UserContext);
+    const { theme, setTheme} = useContext(ThemeContext);
+
+    const nextTheme = theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT;
 
     return (<div>
         Subparent
-        <p>{props.user.firstName}</p>
-        <button onClick={() => props.setTheme(nextTheme)}>Click to change theme</button>
+        <p>{firstName}</p>
+        <button onClick={() => setTheme(nextTheme)}>Click to change theme</button>
         <Child />
     </div>)
 }
-// //1.Огортаємо Subparent в контекст Theme
 
-// const SubparentWithTheme = withTheme(Subparent);
-
-// //2. Огортаємо SubparentWithTheme в контекст User
-
-// const SubparentWithThemeAndUser = withUser(SubparentWithTheme);
-
-//3. Теж саме але в 1 рядок -->
-
-export default withUser(withTheme(Subparent));
+export default Subparent;
