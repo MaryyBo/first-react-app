@@ -2,7 +2,7 @@
 У нас є кнопка, треба підрахувати кількість натиснень на неї
 */
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 
 
@@ -28,25 +28,26 @@ const Clicker = () => {
     })
 
 
-    // const logValueHandler = () => {
+    const logValueHandler = () => {
 
-    //     let sum = 0
-    //     for (let i = 0; i < inputValue; i++) {
-    //         sum += i
-    //     }
-    //     console.log(sum)
-    //     console.log(inputValue)
-    // }
-
-    const logValueHandler = useCallback(() => {
         let sum = 0
         for (let i = 0; i < inputValue; i++) {
             sum += i
         }
-        console.log(sum)
-        console.log(inputValue)
-        
-    }, [inputValue])
+        return sum;
+    }
+
+    const memoizedValue = useMemo(() => logValueHandler(), [inputValue])
+    console.log(memoizedValue)
+    
+    // const logValueHandler = useCallback(() => {
+    //     let sum = 0
+    //     for (let i = 0; i < inputValue; i++) {
+    //         sum += i
+    //     }
+    //     return sum;
+
+    // }, [inputValue])
 
     return (
         <>
