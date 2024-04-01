@@ -1,12 +1,11 @@
 import React from "react";
-import Clicker from "./RegistrationForm/RegistartionForm";
-
+import RegistrationForm from "./RegistrationForm/RegistartionForm";
 
 class App extends React.Component {    
     render() {
         return (
             <>
-                <Clicker />
+                <RegistrationForm />
             </>
         )
     }

@@ -1,115 +1,46 @@
-import { useState, useReducer } from 'react';
-
-function reducer(state, action) {
-    switch(action.type) {
-        case 'CLICK_INCREMENT': {
-            return {
-                ...state,
-                count: state.count + 1
-            };
-        }
-        case 'CLICK_DECREMENT': {
-            return {
-                ...state,
-                count: state.count - 1
-            };
-        }
-        case 'INPUT_CHANGE': {
-            // 1. Розбираємось з атрибутом name
-            // 2. Коли ми розібралися, в який саме стейт має зайти значення - кладемо у відповідний стейт значення
-            break;
-        }
-        default: {
-            return state;
-        }
-    }
-}
+import { useReducer } from 'react';
+import { registrationReducer } from '../../reducers/registrationReducer';
+import CONSTANTS from '../../Constants';
+const { ACTIONS } = CONSTANTS;
 
 const initialState = {
-    count: 0,
-    // тут ще може бути багато інших полей
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
 }
 
-const Clicker = () => {
-    const [state, dispatch] = useReducer(reducer, initialState);
+const RegistrationForm = () => {
+    const [state, dispatch] = useReducer(registrationReducer, initialState);
+    const { firstName, lastName, email, password } = state;
 
-    const clickIncrementHandler = () => {
+    const universalChangeHandler = ({target: {value, name}}) => {
         dispatch({
-            type: 'CLICK_INCREMENT'
-        }); // В dispatch ви передаєте об'єкт action
-    }
-
-    const clickDecrementHandler = () => {
-        dispatch({
-            type: 'CLICK_DECREMENT'
+            type: ACTIONS.INPUT_CHANGE,
+            payload: {
+                value,
+                name
+            }
         });
     }
 
+    const submitHandler = (event) => {
+        event.preventDefault();
+        console.log(state); // Потенційно, тут міг би бути запит на сервер
+    }
+
     return (
-        <>
-            <h1>{state.count}</h1>
-            <button onClick={clickIncrementHandler}>Increment</button>
-            <button onClick={clickDecrementHandler}>Decrement</button>
-        </>
+        <form onSubmit={submitHandler}>
+            <input type='text' name='firstName' placeholder='Type your firstName' value={firstName} onChange={universalChangeHandler} />
+            <input type='text' name='lastName' placeholder='Type your lastName' value={lastName} onChange={universalChangeHandler} />
+            <input type='email' name='email' placeholder='Type your email' value={email} onChange={universalChangeHandler} />
+            <input type='password' name='password' placeholder='Type your password' value={password} onChange={universalChangeHandler} />
+            <button type='submit'>Registration</button>
+        </form>
     );
 }
 
-/*
-
-Задача
-
-+ Додати декремент лічильника до функціоналу
-
-+ 1. Пропишіть відповідний case у редьюсері
-+ 2. Зробіть обробник події натиснення (onClick) кнопки декременту
-+ 3. Створіть у верстці кнопку і прикрутіть до неї обробник події, який ви зробили на попередньому кроці
-
-*/
-
-export default Clicker;
-
-
-// const RegistrationForm = () => {
-//     const [firstName, setFirstName] = useState('');
-//     const [lastName, setLastName] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-
-//     const universalChangeHandler = ({target: {value, name}}) => {
-//         switch(name) {
-//             case 'firstName': {
-//                 setFirstName(value);
-//                 break;
-//             }
-//             case 'lastName': {
-//                 setLastName(value);
-//                 break;
-//             }
-//             case 'email': {
-//                 setEmail(value);
-//                 break;
-//             }
-//             case 'password': {
-//                 setPassword(value);
-//                 break;
-//             }
-//             default: {
-//                 break;
-//             }
-//         }
-//     }
-
-//     return (
-//         <form>
-//             <input type='text' name='firstName' placeholder='Type your firstName' value={firstName} onChange={universalChangeHandler} />
-//             <input type='text' name='lastName' placeholder='Type your lastName' value={lastName} onChange={universalChangeHandler} />
-//             <input type='email' name='email' placeholder='Type your email' value={email} onChange={universalChangeHandler} />
-//             <input type='password' name='password' placeholder='Type your password' value={password} onChange={universalChangeHandler} />
-//         </form>
-//     );
-// }
-
-// export default RegistrationForm;
+export default RegistrationForm;
 
 
 /*
@@ -119,7 +50,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
 state - наш стан (об'єкт)
 dispatch - функція, яка запускає action
 
-dispatch(ACTION_TYPE) -->> reducer -->> змінює state
+dispatch({ACTION}) -->> reducer -->> змінює state
 
 ------------------------------------------
 
@@ -152,5 +83,11 @@ const initialState = {
     password: ''
 }
 
+
+*/
+
+/*
+
+Створіть за аналогією форму входу / реєстрації
 
 */
